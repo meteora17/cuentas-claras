@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora del punto de equilibrio — Cuentas Claras</title>
+  <meta name="description" content="Calcula cuántas unidades necesitas vender al mes para cubrir tus costes fijos y variables y no perder dinero. Sin registros.">
+  <link rel="canonical" href="https://cuentasclaras.app/herramientas/punto-equilibrio">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Calculadora del punto de equilibrio — Cuentas Claras">
+  <meta property="og:description" content="Calcula cuánto necesitas vender para cubrir tus costes y empezar a ganar dinero.">
+  <meta property="og:url" content="https://cuentasclaras.app/herramientas/punto-equilibrio">
+  <meta property="og:locale" content="es_ES">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Cabecera -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand" aria-label="Cuentas Claras - Inicio">
+        <span>Cuentas Claras<span class="brand-dot"></span></span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="../index.html" class="nav-link">Inicio</a>
+        <a href="calculadora-precios.html" class="nav-link">Mi precio ideal</a>
+        <a href="punto-equilibrio.html" class="nav-link active" aria-current="page">Punto de equilibrio</a>
+        <a href="coste-adquisicion-valor-cliente.html" class="nav-link">Coste y valor del cliente</a>
+        <a href="salud-negocio.html" class="nav-link">Salud del negocio</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main id="contenido-principal" class="container">
+    <div class="tool-page-header">
+      <a href="../index.html#herramientas" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Todas las herramientas
+      </a>
+      <h1 class="tool-title">Calculadora del punto de equilibrio</h1>
+      <p class="tool-intro">
+        Saber exactamente cuánto necesitas vender cada mes para cubrir tus costes es el dato más importante para dar estabilidad a tu negocio.
+      </p>
+    </div>
+
+    <div class="calculator-layout">
+      <!-- Panel de Formulario -->
+      <section class="form-panel" aria-label="Formulario de punto de equilibrio">
+        <!-- Aviso condicional de margen negativo -->
+        <div id="alerta-margen-negativo" class="result-explanation-box" style="display: none; background-color: var(--danger-bg); border-color: var(--danger); color: var(--danger); margin-bottom: 1.5rem;"></div>
+
+        <form id="form-equilibrio" onsubmit="return false;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="costes-fijos" class="form-label">
+                Costes fijos mensuales
+                <span class="form-label-hint">Alquiler, sueldos fijos, cuotas</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="costes-fijos" class="form-input has-suffix" placeholder="1800" step="any" min="0" inputmode="decimal">
+                <span class="input-affix suffix">€</span>
+              </div>
+              <p id="err-costes-fijos" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="precio-venta" class="form-label">
+                Precio de venta por unidad
+                <span class="form-label-hint">Lo que cobra tu negocio</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="precio-venta" class="form-input has-suffix" placeholder="45" step="any" min="0.01" inputmode="decimal">
+                <span class="input-affix suffix">€</span>
+              </div>
+              <p id="err-precio-venta" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="coste-variable" class="form-label">
+                Coste variable por unidad
+                <span class="form-label-hint">Coste directo unitario</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="coste-variable" class="form-input has-suffix" placeholder="15" step="any" min="0" inputmode="decimal">
+                <span class="input-affix suffix">€</span>
+              </div>
+              <p id="err-coste-variable" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="beneficio-objetivo" class="form-label">
+                Beneficio mensual deseado
+                <span class="form-label-hint">Opcional</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="beneficio-objetivo" class="form-input has-suffix" placeholder="1000" step="any" min="0" inputmode="decimal">
+                <span class="input-affix suffix">€</span>
+              </div>
+              <p id="err-beneficio-objetivo" class="field-error"></p>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="btn-reset" class="btn btn-ghost btn-sm">Limpiar datos</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Panel de Resultados -->
+      <aside class="results-panel" aria-label="Resultados de punto de equilibrio" aria-live="polite">
+        <!-- Estado Vacío -->
+        <div id="results-empty" class="results-empty-state">
+          <div class="results-empty-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <h2 class="results-empty-title">Calcula tu punto de equilibrio</h2>
+          <p class="results-empty-desc">Indica tus costes fijos, precio y coste variable para conocer el mínimo de ventas que necesitas.</p>
+        </div>
+
+        <!-- Resultados Contenido -->
+        <div id="results-content" class="results-content">
+          <!-- Métrica Principal -->
+          <div class="primary-metric-box">
+            <p class="primary-metric-label">Unidades necesarias al mes</p>
+            <div id="res-unidades-equilibrio" class="primary-metric-value">0 uds</div>
+            <p class="primary-metric-subtitle">Ventas mínimas para no perder dinero</p>
+          </div>
+
+          <!-- Visualización Pérdidas -> Equilibrio -> Beneficio -->
+          <div class="visual-scale-wrapper">
+            <div class="visual-scale-title">
+              <span>Dinámica de rentabilidad</span>
+              <span style="color: var(--accent); font-weight: 700;">Equilibrio</span>
+            </div>
+            <div class="visual-scale-bar" role="img" aria-label="Barra visual: Zona de pérdidas, punto de equilibrio y zona de beneficios">
+              <div class="scale-zone loss">Pérdidas</div>
+              <div class="scale-zone breakeven" title="Punto exacto de equilibrio"></div>
+              <div class="scale-zone profit">Beneficios</div>
+            </div>
+            <div class="scale-legend">
+              <span>Menos ventas</span>
+              <span>Punto cero</span>
+              <span>Más ventas</span>
+            </div>
+          </div>
+
+          <!-- Métricas de Apoyo -->
+          <div class="secondary-metrics-grid">
+            <div class="metric-item">
+              <div class="metric-label">Facturación mínima al mes</div>
+              <div id="res-ingresos-equilibrio" class="metric-value">0,00 €</div>
+              <div class="metric-sub">Para cubrir el 100% de costes</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-label">Margen de contribución</div>
+              <div id="res-margen-contribucion" class="metric-value">0,00 €</div>
+              <div class="metric-sub">Por cada venta realizada</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-label">Porcentaje de contribución</div>
+              <div id="res-pct-contribucion" class="metric-value">0%</div>
+              <div class="metric-sub">Del precio de venta</div>
+            </div>
+          </div>
+
+          <!-- Meta con beneficio -->
+          <div id="res-box-beneficio-objetivo" class="result-explanation-box" style="display: none;"></div>
+
+          <!-- Escenarios Adaptativos -->
+          <div class="scenarios-container">
+            <h3 class="scenarios-title">Cómo evoluciona tu resultado según ventas</h3>
+            <table class="scenarios-table">
+              <thead>
+                <tr>
+                  <th>Ventas</th>
+                  <th>Facturación</th>
+                  <th>Resultado mensual</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-escenarios-equilibrio"></tbody>
+            </table>
+          </div>
+
+          <div class="result-actions" style="margin-top: 1.5rem;">
+            <button type="button" id="btn-compartir" class="btn btn-secondary btn-block">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              Compartir este resultado
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Sección Educativa y SEO -->
+    <section class="educational-section">
+      <h2 class="educational-title">Aprende a gestionar tu punto de equilibrio</h2>
+      <div class="accordion-list">
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger">
+            <span>¿Por qué es vital conocer tu punto de equilibrio?</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-collapse">
+            <div class="accordion-body">
+              <p>El punto de equilibrio te marca la línea entre la tranquilidad y las pérdidas. Saber que necesitas, por ejemplo, 24 clientes o 120 unidades al mes para estar a salvo te ayuda a medir si tu ritmo de ventas semanal va por buen camino o si necesitas actuar antes de que acabe el mes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger">
+            <span>¿Cómo clasificar costes fijos y variables sin liarte?</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-collapse">
+            <div class="accordion-body">
+              <p>Una regla muy práctica: pregúntate «si este mes no vendo nada de nada, ¿tengo que pagar esto igualmente?». Si la respuesta es sí (alquiler, software, teléfono, cuota de autónomos, gestoría), es un <strong>coste fijo</strong>. Si el gasto solo ocurre cuando haces una venta (envío por mensajería, embalaje, materia prima, comisión de cobro con tarjeta), es un <strong>coste variable</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger">
+            <span>Tres formas prácticas de reducir el punto de equilibrio</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-collapse">
+            <div class="accordion-body">
+              <p>1. <strong>Subir ligeramente el precio:</strong> Un incremento de un 5% o 10% en el precio va directamente al margen de contribución, reduciendo notablemente el volumen de unidades que necesitas vender.</p>
+              <p>2. <strong>Reducir costes fijos innecesarios:</strong> Auditar suscripciones recurrentes, renegociar contratos de servicios y mantener la estructura lo más ligera posible.</p>
+              <p>3. <strong>Optimizar costes variables:</strong> Comprar materias primas en mejores lotes o negociar tarifas de transporte cuando el volumen lo justifique.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aviso discreto -->
+    <p class="disclaimer-box">
+      Los resultados son orientativos y dependen de los datos introducidos. Esta herramienta no constituye asesoramiento financiero, fiscal, legal o de inversión.
+    </p>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="../index.html" class="brand">
+            <span>Cuentas Claras<span class="brand-dot"></span></span>
+          </a>
+          <p class="footer-desc">
+            Pon tus números en orden y toma mejores decisiones. Herramientas limpias, directas y sin rodeos.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Herramientas</h4>
+          <ul class="footer-links">
+            <li><a href="calculadora-precios.html">Mi precio ideal</a></li>
+            <li><a href="punto-equilibrio.html">Punto de equilibrio</a></li>
+            <li><a href="coste-adquisicion-valor-cliente.html">Coste y valor del cliente</a></li>
+            <li><a href="salud-negocio.html">Salud del negocio</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Privacidad y uso</h4>
+          <ul class="footer-links">
+            <li><span style="color: var(--text-muted); font-size: 0.88rem;">100% en tu navegador</span></li>
+            <li><span style="color: var(--text-muted); font-size: 0.88rem;">Sin cuentas ni cookies</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; Cuentas Claras.</span>
+        <span>Herramientas prácticas para pequeños negocios.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/compartir.js"></script>
+  <script src="../js/punto-equilibrio.js"></script>
+</body>
+</html>

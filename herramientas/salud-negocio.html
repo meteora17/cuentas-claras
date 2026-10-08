@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revisión de salud del negocio — Cuentas Claras</title>
+  <meta name="description" content="Diagnóstico interactivo de 18 preguntas. Evalúa finanzas, clientes, captación, ventas y ejecución para detectar dónde poner el foco hoy.">
+  <link rel="canonical" href="https://cuentasclaras.app/herramientas/salud-negocio">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Revisión de salud del negocio — Cuentas Claras">
+  <meta property="og:description" content="Responde unas preguntas y descubre qué áreas de tu negocio necesitan más atención.">
+  <meta property="og:url" content="https://cuentasclaras.app/herramientas/salud-negocio">
+  <meta property="og:locale" content="es_ES">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Cabecera -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand" aria-label="Cuentas Claras - Inicio">
+        <span>Cuentas Claras<span class="brand-dot"></span></span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="../index.html" class="nav-link">Inicio</a>
+        <a href="calculadora-precios.html" class="nav-link">Mi precio ideal</a>
+        <a href="punto-equilibrio.html" class="nav-link">Punto de equilibrio</a>
+        <a href="coste-adquisicion-valor-cliente.html" class="nav-link">Coste y valor del cliente</a>
+        <a href="salud-negocio.html" class="nav-link active" aria-current="page">Salud del negocio</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main id="contenido-principal" class="container">
+    <div class="tool-page-header">
+      <a href="../index.html#herramientas" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Todas las herramientas
+      </a>
+      <h1 class="tool-title">Revisión de salud del negocio</h1>
+      <p class="tool-intro">
+        Responde 18 preguntas breves y descubre con claridad qué áreas de tu negocio funcionan con solidez y cuáles necesitan atención prioritaria.
+      </p>
+    </div>
+
+    <div class="assessment-layout">
+      <!-- Barra de Progreso Sticky -->
+      <div class="assessment-progress-wrapper" role="region" aria-label="Progreso del diagnóstico">
+        <div class="assessment-progress-header">
+          <span>Progreso</span>
+          <span id="assessment-progress-text">0 de 18 preguntas respondidas</span>
+        </div>
+        <div class="progress-bar-container">
+          <div id="assessment-progress-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- FORMULARIO DE PREGUNTAS -->
+      <form id="form-diagnostico" onsubmit="return false;">
+        
+        <!-- ÁREA 1: FINANZAS -->
+        <fieldset class="assessment-section">
+          <legend class="assessment-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            1. Finanzas y control de números
+          </legend>
+          <p class="assessment-section-desc">Claridad sobre costes, márgenes y umbrales de seguridad de tu negocio.</p>
+
+          <div class="question-block">
+            <p class="question-text">1. ¿Conoces tus costes fijos mensuales con exactitud?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p1" value="0" data-area="finanzas" required>
+                <span>No o apenas</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p1" value="1" data-area="finanzas">
+                <span>Tengo una idea aproximada</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p1" value="2" data-area="finanzas">
+                <span>Sí, los tengo registrados</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">2. ¿Sabes cuánto margen real de beneficio te deja cada venta?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p2" value="0" data-area="finanzas" required>
+                <span>No lo calculo</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p2" value="1" data-area="finanzas">
+                <span>En algunos productos/servicios</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p2" value="2" data-area="finanzas">
+                <span>Sí, conozco mi margen neto</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">3. ¿Sabes cuánto necesitas facturar cada mes para cubrir todos tus costes?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p3" value="0" data-area="finanzas" required>
+                <span>No tengo esa cifra clara</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p3" value="1" data-area="finanzas">
+                <span>Más o menos la calculo a ojo</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p3" value="2" data-area="finanzas">
+                <span>Sí, sé mi punto de equilibrio</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ÁREA 2: CLIENTE -->
+        <fieldset class="assessment-section">
+          <legend class="assessment-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            2. Definición del cliente
+          </legend>
+          <p class="assessment-section-desc">Entendimiento profundo de quién compra y por qué lo hace.</p>
+
+          <div class="question-block">
+            <p class="question-text">4. ¿Puedes describir claramente a tu cliente ideal prioritario?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p4" value="0" data-area="cliente" required>
+                <span>Vendo a quien surja</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p4" value="1" data-area="cliente">
+                <span>Tengo un perfil intuitivo</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p4" value="2" data-area="cliente">
+                <span>Sí, lo tengo muy definido</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">5. ¿Sabes qué problema concreto y urgente resuelves para ellos?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p5" value="0" data-area="cliente" required>
+                <span>Aún no con precisión</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p5" value="1" data-area="cliente">
+                <span>En parte</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p5" value="2" data-area="cliente">
+                <span>Sí, en sus propias palabras</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">6. ¿Conoces por qué un cliente te elige a ti frente a otras opciones?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p6" value="0" data-area="cliente" required>
+                <span>No suelo preguntarlo</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p6" value="1" data-area="cliente">
+                <span>Por precio o cercanía</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p6" value="2" data-area="cliente">
+                <span>Sí, por un diferencial claro</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ÁREA 3: CAPTACIÓN -->
+        <fieldset class="assessment-section">
+          <legend class="assessment-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            </svg>
+            3. Captación de clientes
+          </legend>
+          <p class="assessment-section-desc">Capacidad para atraer nuevas personas interesadas de forma constante.</p>
+
+          <div class="question-block">
+            <p class="question-text">7. ¿Consigues clientes fuera de tu círculo personal y conocidos?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p7" value="0" data-area="captacion" required>
+                <span>Casi todos son conocidos</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p7" value="1" data-area="captacion">
+                <span>Algunos llegan por terceros</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p7" value="2" data-area="captacion">
+                <span>Sí, la gran mayoría</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">8. ¿Sabes qué canales te generan la mayoría de tus clientes?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p8" value="0" data-area="captacion" required>
+                <span>No sé de dónde vienen</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p8" value="1" data-area="captacion">
+                <span>Sospecho de un par de canales</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p8" value="2" data-area="captacion">
+                <span>Sí, tengo medido el origen</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">9. ¿Tienes una forma constante y predecible de conseguir nuevos contactos?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p9" value="0" data-area="captacion" required>
+                <span>Depende de rachas o suerte</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p9" value="1" data-area="captacion">
+                <span>Hago acciones sueltas</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p9" value="2" data-area="captacion">
+                <span>Sí, mantengo un flujo activo</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ÁREA 4: PRESENCIA ONLINE -->
+        <fieldset class="assessment-section">
+          <legend class="assessment-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            4. Presencia online
+          </legend>
+          <p class="assessment-section-desc">Visibilidad en internet y claridad del mensaje digital.</p>
+
+          <div class="question-block">
+            <p class="question-text">10. ¿Tu negocio tiene una web o presencia digital cuidada y actualizada?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p10" value="0" data-area="presencia" required>
+                <span>No tengo o está abandonada</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p10" value="1" data-area="presencia">
+                <span>Tengo perfiles básicos</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p10" value="2" data-area="presencia">
+                <span>Sí, moderna y al día</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">11. ¿Puede un cliente encontrarte fácilmente cuando busca lo que ofreces?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p11" value="0" data-area="presencia" required>
+                <span>Es casi imposible</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p11" value="1" data-area="presencia">
+                <span>Solo si sabe mi nombre</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p11" value="2" data-area="presencia">
+                <span>Sí, aparezco con claridad</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">12. ¿Tu presencia online explica claramente qué haces, para quién y cómo empezar?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p12" value="0" data-area="presencia" required>
+                <span>Es confusa o genérica</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p12" value="1" data-area="presencia">
+                <span>Se entiende con esfuerzo</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p12" value="2" data-area="presencia">
+                <span>Sí, en menos de 10 segundos</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ÁREA 5: VENTAS -->
+        <fieldset class="assessment-section">
+          <legend class="assessment-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            5. Proceso de ventas
+          </legend>
+          <p class="assessment-section-desc">Seguimiento comercial y cierre de presupuestos.</p>
+
+          <div class="question-block">
+            <p class="question-text">13. ¿Haces un seguimiento activo de quienes muestran interés o piden presupuesto?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p13" value="0" data-area="ventas" required>
+                <span>Envío y espero a que llamen</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p13" value="1" data-area="ventas">
+                <span>A veces insisto una vez</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p13" value="2" data-area="ventas">
+                <span>Sí, hago seguimiento pautado</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">14. ¿Tienes un proceso de venta mínimamente definido con pasos claros?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p14" value="0" data-area="ventas" required>
+                <span>Improviso cada vez</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p14" value="1" data-area="ventas">
+                <span>Suelo seguir pasos parecidos</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p14" value="2" data-area="ventas">
+                <span>Sí, tengo etapas claras</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">15. ¿Sabes qué porcentaje aproximado de contactos acaba comprando?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p15" value="0" data-area="ventas" required>
+                <span>No lo mido en absoluto</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p15" value="1" data-area="ventas">
+                <span>Tengo una intuición general</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p15" value="2" data-area="ventas">
+                <span>Sí, conozco mi conversión</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ÁREA 6: EJECUCIÓN -->
+        <fieldset class="assessment-section">
+          <legend class="assessment-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 14 14"></polyline>
+            </svg>
+            6. Ejecución y organización
+          </legend>
+          <p class="assessment-section-desc">Foco semanal, prioridades y finalización de tareas clave.</p>
+
+          <div class="question-block">
+            <p class="question-text">16. ¿Tienes claras tus prioridades cada semana para hacer crecer el negocio?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p16" value="0" data-area="ejecucion" required>
+                <span>Solo apago fuegos urgentes</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p16" value="1" data-area="ejecucion">
+                <span>Intento priorizar algunas cosas</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p16" value="2" data-area="ejecucion">
+                <span>Sí, fijo 2 o 3 focos claros</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">17. ¿Reservas tiempo en tu agenda para las tareas importantes del negocio?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p17" value="0" data-area="ejecucion" required>
+                <span>Nunca encuentro el momento</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p17" value="1" data-area="ejecucion">
+                <span>Solo cuando tengo huecos</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p17" value="2" data-area="ejecucion">
+                <span>Sí, bloqueo horas protegidas</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <p class="question-text">18. ¿Sueles terminar las iniciativas importantes que empiezas sin dispersarte?</p>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="p18" value="0" data-area="ejecucion" required>
+                <span>Suelo dejar cosas a medias</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p18" value="1" data-area="ejecucion">
+                <span>Termino las más sencillas</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="p18" value="2" data-area="ejecucion">
+                <span>Sí, cierro antes de abrir más</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <div style="text-align: center; margin-top: 2rem;">
+          <button type="button" id="btn-finalizar-diagnostico" class="btn btn-secondary btn-block" style="max-width: 380px; margin: 0 auto;" disabled>
+            Ver mi diagnóstico de salud
+          </button>
+        </div>
+      </form>
+
+      <!-- VISTA DE RESULTADOS -->
+      <section id="assessment-results" class="assessment-results-view" aria-label="Resultado de salud del negocio" aria-live="polite">
+        <!-- Bloque Principal de Puntuación -->
+        <div class="score-hero-box">
+          <p class="section-label">Puntuación general</p>
+          <div id="res-score-number" class="score-number">0/100</div>
+          <div>
+            <span id="res-score-badge" class="score-badge-label">Calculando...</span>
+          </div>
+          <p id="res-score-desc" class="score-summary-text"></p>
+        </div>
+
+        <p class="form-hint" style="text-align: center; margin-bottom: 2rem;">
+          Este resultado es un diagnóstico orientativo basado en tus respuestas, pensado para reflexionar y priorizar, no una medición científica.
+        </p>
+
+        <!-- Desglose por las 6 áreas -->
+        <h3 class="scenarios-title" style="font-size: 1.1rem; margin-bottom: 1rem;">Desglose por áreas evaluadas</h3>
+        <div id="res-areas-grid" class="areas-breakdown-grid"></div>
+
+        <!-- 3 Áreas de atención prioritaria -->
+        <div class="priorities-section">
+          <h3 class="priorities-title">Las 3 áreas que más necesitan tu atención</h3>
+          <p class="priorities-desc">
+            Enfocarse en demasiados frentes a la vez bloquea el progreso. Te recomendamos empezar únicamente por estas áreas prioritarias:
+          </p>
+          <div id="res-priorities-list" class="priority-cards-list"></div>
+        </div>
+
+        <!-- Acciones finales -->
+        <div class="result-actions" style="margin-top: 2rem; justify-content: center; flex-wrap: wrap;">
+          <button type="button" id="btn-compartir" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            Compartir diagnóstico
+          </button>
+          <button type="button" id="btn-reiniciar" class="btn btn-ghost">
+            Volver a hacer el test
+          </button>
+        </div>
+      </section>
+
+      <!-- Sección Educativa y SEO -->
+      <section class="educational-section">
+        <h2 class="educational-title">Cómo actuar tras el diagnóstico</h2>
+        <div class="accordion-list">
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <span>¿Por qué conviene priorizar una sola área a la vez?</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                <p>Intentar mejorar las finanzas, rediseñar la web, lanzar campañas publicitarias y cambiar el proceso de ventas al mismo tiempo suele provocar dispersión y abandono. Escoge el área con menor puntuación y dedica las próximas 2 o 3 semanas a dar solo ese primer paso recomendado.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger">
+              <span>¿Con qué frecuencia conviene revisar la salud del negocio?</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                <p>Una vez cada trimestre (cada 3 meses) es un intervalo ideal. Te permite comprobar si los cambios que implementaste han surtido efecto y si han aparecido nuevos cuellos de botella conforme tu negocio ha evolucionado.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Aviso discreto -->
+      <p class="disclaimer-box">
+        Los resultados son orientativos y dependen de los datos introducidos. Esta herramienta no constituye asesoramiento financiero, fiscal, legal o de inversión.
+      </p>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="../index.html" class="brand">
+            <span>Cuentas Claras<span class="brand-dot"></span></span>
+          </a>
+          <p class="footer-desc">
+            Pon tus números en orden y toma mejores decisiones. Herramientas limpias, directas y sin rodeos.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Herramientas</h4>
+          <ul class="footer-links">
+            <li><a href="calculadora-precios.html">Mi precio ideal</a></li>
+            <li><a href="punto-equilibrio.html">Punto de equilibrio</a></li>
+            <li><a href="coste-adquisicion-valor-cliente.html">Coste y valor del cliente</a></li>
+            <li><a href="salud-negocio.html">Salud del negocio</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Privacidad y uso</h4>
+          <ul class="footer-links">
+            <li><span style="color: var(--text-muted); font-size: 0.88rem;">100% en tu navegador</span></li>
+            <li><span style="color: var(--text-muted); font-size: 0.88rem;">Sin cuentas ni cookies</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; Cuentas Claras.</span>
+        <span>Herramientas prácticas para pequeños negocios.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/compartir.js"></script>
+  <script src="../js/salud-negocio.js"></script>
+</body>
+</html>

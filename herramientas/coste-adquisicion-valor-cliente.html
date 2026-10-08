@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coste de adquisición y valor del cliente — Cuentas Claras</title>
+  <meta name="description" content="Calcula cuánto te cuesta conseguir un nuevo cliente y cuánto valor genera a lo largo del tiempo. Métricas clave explicadas en español.">
+  <link rel="canonical" href="https://cuentasclaras.app/herramientas/coste-adquisicion-valor-cliente">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Coste de adquisición y valor del cliente — Cuentas Claras">
+  <meta property="og:description" content="Comprueba cuánto te cuesta conseguir un cliente y cuánto beneficio puede generar para tu negocio.">
+  <meta property="og:url" content="https://cuentasclaras.app/herramientas/coste-adquisicion-valor-cliente">
+  <meta property="og:locale" content="es_ES">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Cabecera -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand" aria-label="Cuentas Claras - Inicio">
+        <span>Cuentas Claras<span class="brand-dot"></span></span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="../index.html" class="nav-link">Inicio</a>
+        <a href="calculadora-precios.html" class="nav-link">Mi precio ideal</a>
+        <a href="punto-equilibrio.html" class="nav-link">Punto de equilibrio</a>
+        <a href="coste-adquisicion-valor-cliente.html" class="nav-link active" aria-current="page">Coste y valor del cliente</a>
+        <a href="salud-negocio.html" class="nav-link">Salud del negocio</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main id="contenido-principal" class="container">
+    <div class="tool-page-header">
+      <a href="../index.html#herramientas" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Todas las herramientas
+      </a>
+      <h1 class="tool-title">Coste de adquisición y valor del cliente</h1>
+      <p class="tool-intro">
+        Comprueba cuánto te cuesta conseguir cada nuevo cliente y cuánto beneficio neto te deja a lo largo del tiempo para asegurarte de que tu captación es rentable.
+      </p>
+    </div>
+
+    <div class="calculator-layout">
+      <!-- Panel de Formulario -->
+      <section class="form-panel" aria-label="Formulario de métricas de cliente">
+        <form id="form-cac-ltv" onsubmit="return false;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="gasto-captacion" class="form-label">
+                Gasto mensual en captación
+                <span class="form-label-hint">Publicidad, marketing, ventas</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="gasto-captacion" class="form-input has-suffix" placeholder="600" step="any" min="0" inputmode="decimal">
+                <span class="input-affix suffix">€</span>
+              </div>
+              <p id="err-gasto-captacion" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="nuevos-clientes" class="form-label">
+                Nuevos clientes al mes
+                <span class="form-label-hint">Captados en ese periodo</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="nuevos-clientes" class="form-input has-suffix" placeholder="15" step="1" min="1" inputmode="numeric">
+                <span class="input-affix suffix">clientes</span>
+              </div>
+              <p id="err-nuevos-clientes" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="ingreso-medio" class="form-label">
+                Ingresos medios por cliente/mes
+                <span class="form-label-hint">Cuota mensual o compra media</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="ingreso-medio" class="form-input has-suffix" placeholder="50" step="any" min="0.01" inputmode="decimal">
+                <span class="input-affix suffix">€/mes</span>
+              </div>
+              <p id="err-ingreso-medio" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="margen-bruto" class="form-label">
+                Margen bruto
+                <span class="form-label-hint">Descontando costes directos</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="margen-bruto" class="form-input has-suffix" placeholder="70" step="any" min="1" max="100" inputmode="decimal">
+                <span class="input-affix suffix">%</span>
+              </div>
+              <p id="err-margen-bruto" class="field-error"></p>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="tasa-abandono" class="form-label">
+                Tasa de abandono mensual (churn)
+                <span class="form-label-hint">% de clientes que dejan de comprar al mes</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="tasa-abandono" class="form-input has-suffix" placeholder="5" step="any" min="0.1" max="100" inputmode="decimal">
+                <span class="input-affix suffix">%</span>
+              </div>
+              <p id="err-tasa-abandono" class="field-error"></p>
+              <p class="form-hint">Si pierdes un 5% de tus clientes cada mes, la vida estimada media de cada cliente es de unos 20 meses.</p>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="btn-reset" class="btn btn-ghost btn-sm">Limpiar datos</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Panel de Resultados -->
+      <aside class="results-panel" aria-label="Resultados de adquisición y valor" aria-live="polite">
+        <!-- Estado Vacío -->
+        <div id="results-empty" class="results-empty-state">
+          <div class="results-empty-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h2 class="results-empty-title">Analiza la rentabilidad de tus clientes</h2>
+          <p class="results-empty-desc">Introduce tus datos de inversión y recurrencia para calcular el coste y el valor a largo plazo.</p>
+        </div>
+
+        <!-- Resultados Contenido -->
+        <div id="results-content" class="results-content">
+          <!-- Métrica Principal: Coste de Adquisición -->
+          <div class="primary-metric-box">
+            <p class="primary-metric-label">Coste de conseguir un cliente</p>
+            <div id="res-coste-adquisicion" class="primary-metric-value">0,00 €</div>
+            <p class="primary-metric-subtitle">Inversión media necesaria por cliente nuevo</p>
+          </div>
+
+          <!-- Métricas de Apoyo -->
+          <div class="secondary-metrics-grid">
+            <div class="metric-item">
+              <div class="metric-label">Valor estimado del cliente</div>
+              <div id="res-valor-cliente" class="metric-value">0,00 €</div>
+              <div class="metric-sub">Beneficio total generado en su vida</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-label">Vida estimada media</div>
+              <div id="res-vida-meses" class="metric-value">0 meses</div>
+              <div class="metric-sub">Tiempo medio de relación comercial</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-label">Relación valor / coste</div>
+              <div id="res-ratio-valor-coste" class="metric-value">0x</div>
+              <div class="metric-sub">Retorno sobre la captación</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-label">Tiempo de recuperación</div>
+              <div id="res-tiempo-recuperacion" class="metric-value">0 meses</div>
+              <div class="metric-sub">Meses para amortizar el coste</div>
+            </div>
+          </div>
+
+          <!-- Indicador y Diagnóstico del Ratio -->
+          <div class="ratio-meter-wrapper">
+            <div class="metric-label">Diagnóstico de la relación valor/coste</div>
+            <div>
+              <span id="res-ratio-badge" class="ratio-badge success">Calculando...</span>
+            </div>
+            <p id="res-ratio-desc" class="form-hint" style="margin-top: 0.6rem;"></p>
+          </div>
+
+          <!-- Explicación requerida -->
+          <div class="result-explanation-box">
+            Es una referencia orientativa, no una regla universal. El resultado depende del tipo de negocio, el margen, la recurrencia y la calidad de los datos introducidos. La fórmula de vida estimada (1 / abandono mensual) es una simplificación habitual para modelos de ingresos periódicos.
+          </div>
+
+          <div class="result-actions">
+            <button type="button" id="btn-compartir" class="btn btn-secondary btn-block">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              Compartir este resultado
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Sección Educativa y SEO -->
+    <section class="educational-section">
+      <h2 class="educational-title">Cómo interpretar y mejorar estas métricas</h2>
+      <div class="accordion-list">
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger">
+            <span>¿Qué es el coste de adquisición y qué gastos debe incluir?</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-collapse">
+            <div class="accordion-body">
+              <p>El coste de adquisición de clientes (a menudo abreviado como CAC) es el dinero total que inviertes en convencer a una persona de que compre por primera vez. Incluye no solo el presupuesto en anuncios (Google Ads, redes sociales), sino también comisiones a comerciales, software de captación o costes de eventos y materiales promocionales.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger">
+            <span>¿Por qué importa tanto la relación entre valor y coste?</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-collapse">
+            <div class="accordion-body">
+              <p>Si conseguir un cliente te cuesta 100 € pero ese cliente solo te genera 80 € de beneficio antes de marcharse, cada venta que consigues te hace más pobre. Por el contrario, cuando la relación supera las 3 veces (un cliente genera 300 € y costó 100 €), tu negocio tiene aire financiero para reinvertir con seguridad.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger">
+            <span>¿Qué significa la simplificación de la vida del cliente?</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-collapse">
+            <div class="accordion-body">
+              <p>Calcular la duración media con la fórmula <code>1 / tasa de abandono</code> es un estándar para negocios con cobros recurrentes o suscripciones. Sin embargo, asume que la tasa de abandono se mantiene constante a lo largo de los años. En negocios tradicionales con compras esporádicas, la vida del cliente depende de cuántas veces vuelve a comprar a lo largo de los años.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aviso discreto -->
+    <p class="disclaimer-box">
+      Los resultados son orientativos y dependen de los datos introducidos. Esta herramienta no constituye asesoramiento financiero, fiscal, legal o de inversión.
+    </p>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="../index.html" class="brand">
+            <span>Cuentas Claras<span class="brand-dot"></span></span>
+          </a>
+          <p class="footer-desc">
+            Pon tus números en orden y toma mejores decisiones. Herramientas limpias, directas y sin rodeos.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Herramientas</h4>
+          <ul class="footer-links">
+            <li><a href="calculadora-precios.html">Mi precio ideal</a></li>
+            <li><a href="punto-equilibrio.html">Punto de equilibrio</a></li>
+            <li><a href="coste-adquisicion-valor-cliente.html">Coste y valor del cliente</a></li>
+            <li><a href="salud-negocio.html">Salud del negocio</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Privacidad y uso</h4>
+          <ul class="footer-links">
+            <li><span style="color: var(--text-muted); font-size: 0.88rem;">100% en tu navegador</span></li>
+            <li><span style="color: var(--text-muted); font-size: 0.88rem;">Sin cuentas ni cookies</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; Cuentas Claras.</span>
+        <span>Herramientas prácticas para pequeños negocios.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/compartir.js"></script>
+  <script src="../js/coste-adquisicion-valor-cliente.js"></script>
+</body>
+</html>

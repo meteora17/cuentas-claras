@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi precio ideal — Cuentas Claras</title>
+  <meta name="description" content="Calcula tu precio ideal para productos y servicios. Cubre costes fijos, variables y obtén el margen deseado según tu posicionamiento.">
+  <link rel="canonical" href="https://cuentasclaras.app/herramientas/calculadora-precios">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mi precio ideal — Cuentas Claras">
+  <meta property="og:description" content="Descubre cuánto necesitas cobrar para cubrir tus costes y alcanzar el margen que buscas.">
+  <meta property="og:url" content="https://cuentasclaras.app/herramientas/calculadora-precios">
+  <meta property="og:locale" content="es_ES">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Cabecera -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand" aria-label="Cuentas Claras - Inicio">
+        <span>Cuentas Claras<span class="brand-dot"></span></span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="../index.html" class="nav-link">Inicio</a>
+        <a href="calculadora-precios.html" class="nav-link active" aria-current="page">Mi precio ideal</a>
+        <a href="punto-equilibrio.html" class="nav-link">Punto de equilibrio</a>
+        <a href="coste-adquisicion-valor-cliente.html" class="nav-link">Coste y valor del cliente</a>
+        <a href="salud-negocio.html" class="nav-link">Salud del negocio</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main id="contenido-principal" class="container">
+    <div class="tool-page-header">
+      <a href="../index.html#herramientas" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Todas las herramientas
+      </a>
+      <h1 class="tool-title">Mi precio ideal</h1>
+      <p class="tool-intro">
+        Descubre cuánto necesitas cobrar para cubrir tus costes fijos y variables y alcanzar el margen de beneficio que buscas.
+      </p>
+    </div>
+
+    <div class="calculator-layout">
+      <!-- Panel de Entrada de Datos -->
+      <section class="form-panel" aria-label="Formulario de cálculo">
+        <!-- Selector de Modo -->
+        <div class="tab-list" role="tablist" aria-label="Tipo de negocio">
+          <button type="button" id="tab-producto" class="tab-btn active" role="tab" aria-selected="true" aria-controls="form-producto">
+            Venta de producto
+          </button>
+          <button type="button" id="tab-servicio" class="tab-btn" role="tab" aria-selected="false" aria-controls="form-servicio">
+            Prestación de servicio
+          </button>
+        </div>
+
+        <!-- FORMULARIO PRODUCTO -->
+        <form id="form-producto" role="tabpanel" aria-labelledby="tab-producto" onsubmit="return false;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="prod-coste-variable" class="form-label">
+                Coste variable por unidad
+                <span class="form-label-hint">Materia prima, embalaje</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="prod-coste-variable" class="form-input has-suffix" placeholder="12,50" step="any" min="0" inputmode="decimal">
+                <span class="input-affix suffix">€</span>
+              </div>
+              <p id="err-prod-coste-variable" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="prod-costes-fijos" class="form-label">
+                Costes fijos mensuales
+                <span class="form-label-hint">Alquiler, cuotas, luz</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="prod-costes-fijos" class="form-input has-suffix" placeholder="1200" step="any" min="0" inputmode="decimal">
+                <span class="input-affix suffix">€</span>
+              </div>
+              <p id="err-prod-costes-fijos" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="prod-ventas-previstas" class="form-label">
+                Ventas previstas al mes
+                <span class="form-label-hint">Unidades estimadas</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="prod-ventas-previstas" class="form-input has-suffix" placeholder="100" step="1" min="1" inputmode="numeric">
+                <span class="input-affix suffix">uds</span>
+              </div>
+              <p id="err-prod-ventas-previstas" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="prod-margen-deseado" class="form-label">
+                Margen de beneficio
+                <span class="form-label-hint">Sobre el precio final</span>
+              </label>
+              
+              <!-- Opciones automáticas de posicionamiento -->
+              <div class="margin-presets" role="group" aria-label="Elegir margen de producto">
+                <button type="button" class="preset-pill-btn" data-target="prod-margen-deseado" data-value="20" title="Volumen alto y precios muy ajustados">
+                  Low cost (20%)
+                </button>
+                <button type="button" class="preset-pill-btn active" data-target="prod-margen-deseado" data-value="40" title="Precio estándar de mercado">
+                  Estándar (40%)
+                </button>
+                <button type="button" class="preset-pill-btn" data-target="prod-margen-deseado" data-value="60" title="Alto valor percibido y exclusividad">
+                  Premium (60%)
+                </button>
+                <button type="button" class="preset-pill-btn" data-target="prod-margen-deseado" data-value="manual">
+                  Manual
+                </button>
+              </div>
+
+              <div class="input-wrapper">
+                <input type="number" id="prod-margen-deseado" class="form-input has-suffix" placeholder="40" value="40" step="any" min="0" max="99" inputmode="decimal">
+                <span class="input-affix suffix">%</span>
+              </div>
+              <p id="err-prod-margen-deseado" class="field-error"></p>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="prod-precio-actual" class="form-label">
+                Precio actual (opcional)
+                <span class="form-label-hint">Para comparar con el recomendado</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="prod-precio-actual" class="form-input has-suffix" placeholder="Opcional" step="any" min="0" inputmode="decimal">
+                <span class="input-affix suffix">€</span>
+              </div>
+              <p id="err-prod-precio-actual" class="field-error"></p>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="btn-reset-producto" class="btn btn-ghost btn-sm">Limpiar datos</button>
+          </div>
+        </form>
+
+        <!-- FORMULARIO SERVICIO -->
+        <form id="form-servicio" role="tabpanel" aria-labelledby="tab-servicio" style="display: none;" onsubmit="return false;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="serv-ingresos-objetivo" class="form-label">
+                Objetivo de ingresos al mes
+                <span class="form-label-hint">Tu sueldo deseado</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="serv-ingresos-objetivo" class="form-input has-suffix" placeholder="2500" step="any" min="0" inputmode="decimal">
+                <span class="input-affix suffix">€</span>
+              </div>
+              <p id="err-serv-ingresos-objetivo" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="serv-gastos-negocio" class="form-label">
+                Gastos del negocio al mes
+                <span class="form-label-hint">Software, gestoría, suministros</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="serv-gastos-negocio" class="form-input has-suffix" placeholder="600" step="any" min="0" inputmode="decimal">
+                <span class="input-affix suffix">€</span>
+              </div>
+              <p id="err-serv-gastos-negocio" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="serv-horas-disponibles" class="form-label">
+                Horas de trabajo al mes
+                <span class="form-label-hint">Ejemplo: 160 h (40 h/sem)</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="serv-horas-disponibles" class="form-input has-suffix" placeholder="160" step="any" min="1" inputmode="decimal">
+                <span class="input-affix suffix">h</span>
+              </div>
+              <p id="err-serv-horas-disponibles" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="serv-pct-facturable" class="form-label">
+                Porcentaje facturable
+                <span class="form-label-hint">Tiempo directo en clientes</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="serv-pct-facturable" class="form-input has-suffix" placeholder="60" step="any" min="1" max="100" inputmode="decimal">
+                <span class="input-affix suffix">%</span>
+              </div>
+              <p id="err-serv-pct-facturable" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="serv-margen-deseado" class="form-label">
+                Margen de seguridad / beneficio
+                <span class="form-label-hint">Reserva para imprevistos</span>
+              </label>
+
+              <!-- Opciones automáticas de posicionamiento -->
+              <div class="margin-presets" role="group" aria-label="Elegir margen de servicio">
+                <button type="button" class="preset-pill-btn" data-target="serv-margen-deseado" data-value="15" title="Tarifa ajustada o inicio de actividad">
+                  Low cost (15%)
+                </button>
+                <button type="button" class="preset-pill-btn active" data-target="serv-margen-deseado" data-value="25" title="Tarifa equilibrada de mercado">
+                  Estándar (25%)
+                </button>
+                <button type="button" class="preset-pill-btn" data-target="serv-margen-deseado" data-value="40" title="Alta especialización y consultoría">
+                  Premium (40%)
+                </button>
+                <button type="button" class="preset-pill-btn" data-target="serv-margen-deseado" data-value="manual">
+                  Manual
+                </button>
+              </div>
+
+              <div class="input-wrapper">
+                <input type="number" id="serv-margen-deseado" class="form-input has-suffix" placeholder="25" value="25" step="any" min="0" max="99" inputmode="decimal">
+                <span class="input-affix suffix">%</span>
+              </div>
+              <p id="err-serv-margen-deseado" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="serv-precio-actual" class="form-label">
+                Tarifa actual por hora (opcional)
+                <span class="form-label-hint">Lo que cobras hoy</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="serv-precio-actual" class="form-input has-suffix" placeholder="Opcional" step="any" min="0" inputmode="decimal">
+                <span class="input-affix suffix">€/h</span>
+              </div>
+              <p id="err-serv-precio-actual" class="field-error"></p>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="btn-reset-servicio" class="btn btn-ghost btn-sm">Limpiar datos</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Panel de Resultados -->
+      <aside class="results-panel" aria-label="Resultados del cálculo" aria-live="polite">
+        <!-- Estado Vacío -->
+        <div id="results-empty" class="results-empty-state">
+          <div class="results-empty-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h2 class="results-empty-title">Tus resultados aparecerán aquí</h2>
+          <p class="results-empty-desc">Rellena los campos del formulario para calcular automáticamente el precio recomendado y tus márgenes.</p>
+        </div>
+
+        <!-- Resultados Contenido -->
+        <div id="results-content" class="results-content">
+          <!-- RESULTADOS PRODUCTO -->
+          <div id="results-producto">
+            <div class="primary-metric-box">
+              <p class="primary-metric-label">Precio orientativo recomendado</p>
+              <div id="prod-res-precio-rec" class="primary-metric-value">0,00 €</div>
+              <p class="primary-metric-subtitle">Por cada unidad vendida</p>
+            </div>
+
+            <div id="prod-res-comparativa" class="result-explanation-box" style="display: none;"></div>
+
+            <div class="secondary-metrics-grid">
+              <div class="metric-item">
+                <div class="metric-label">Coste total por unidad</div>
+                <div id="prod-res-coste-total" class="metric-value">0,00 €</div>
+                <div class="metric-sub">Precio mínimo para no perder</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Coste fijo repercutido</div>
+                <div id="prod-res-coste-fijo-u" class="metric-value">0,00 €</div>
+                <div class="metric-sub">Por unidad prevista</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Beneficio neto por unidad</div>
+                <div id="prod-res-beneficio-u" class="metric-value">0,00 €</div>
+                <div class="metric-sub">Al precio recomendado</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Beneficio mensual estimado</div>
+                <div id="prod-res-beneficio-mes" class="metric-value">0,00 €</div>
+                <div class="metric-sub">Con el volumen previsto</div>
+              </div>
+            </div>
+
+            <!-- Escenarios de margen -->
+            <div class="scenarios-container">
+              <h3 class="scenarios-title">Escenarios según margen de beneficio</h3>
+              <table class="scenarios-table">
+                <thead>
+                  <tr>
+                    <th>Margen</th>
+                    <th>Precio</th>
+                    <th>Beneficio/u</th>
+                    <th>Beneficio/mes</th>
+                  </tr>
+                </thead>
+                <tbody id="prod-tabla-escenarios"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- RESULTADOS SERVICIO -->
+          <div id="results-servicio" style="display: none;">
+            <div class="primary-metric-box">
+              <p class="primary-metric-label">Tarifa orientativa recomendada</p>
+              <div id="serv-res-precio-rec" class="primary-metric-value">0,00 €/h</div>
+              <p class="primary-metric-subtitle">Para cubrir tu sueldo, gastos y margen</p>
+            </div>
+
+            <div id="serv-res-comparativa" class="result-explanation-box" style="display: none;"></div>
+
+            <div class="secondary-metrics-grid">
+              <div class="metric-item">
+                <div class="metric-label">Coste base mínimo</div>
+                <div id="serv-res-coste-base" class="metric-value">0,00 €/h</div>
+                <div class="metric-sub">Para cubrir gastos y sueldo</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Horas facturables reales</div>
+                <div id="serv-res-horas-fact" class="metric-value">0 h</div>
+                <div class="metric-sub">Dedicadas a clientes/mes</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Escenario tarifa superior</div>
+                <div id="serv-res-precio-sup" class="metric-value">0,00 €/h</div>
+                <div class="metric-sub">Margen reforzado (+15%)</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Facturación mensual meta</div>
+                <div id="serv-res-ingresos-rec" class="metric-value">0,00 €</div>
+                <div class="metric-sub">Al precio recomendado</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Explicación requerida -->
+          <div class="result-explanation-box">
+            Este cálculo es una referencia basada en los datos que has introducido. El precio final también depende del valor que percibe el cliente, la competencia, la demanda y el posicionamiento de tu negocio.
+          </div>
+
+          <!-- Acciones de compartir -->
+          <div class="result-actions">
+            <button type="button" id="btn-compartir" class="btn btn-secondary btn-block">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              Compartir este resultado
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Sección Educativa y SEO -->
+    <section class="educational-section">
+      <h2 class="educational-title">Conceptos clave para fijar tus precios</h2>
+      <div class="accordion-list">
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger">
+            <span>¿Qué es el margen de beneficio y cómo se calcula?</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-collapse">
+            <div class="accordion-body">
+              <p>El margen de beneficio representa el porcentaje del precio de venta que queda como ganancia limpia después de cubrir los costes. Si vendes un producto a 100 € y su coste total fue de 60 €, tu beneficio es de 40 € y tu margen es del 40% (40 / 100).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger">
+            <span>Diferencia entre margen de beneficio y sobrecoste (markup)</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-collapse">
+            <div class="accordion-body">
+              <p>Es uno de los errores más comunes: el sobrecoste se aplica sobre el coste, mientras que el margen se calcula sobre el precio de venta final. Si algo te cuesta 50 € y le sumas un 50% de sobrecoste (lo vendes a 75 €), tu margen real no es del 50%, sino del 33,3% (25 / 75). Por eso esta calculadora utiliza el margen comercial directo sobre el precio final.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger">
+            <span>Errores habituales al poner precios en pequeños negocios</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-collapse">
+            <div class="accordion-body">
+              <p>1. <strong>Olvidar las horas no facturables en servicios:</strong> Nadie factura 160 horas al mes si trabaja solo; hay tareas administrativas, presupuestos, formación y descansos que deben ser cubiertos por las horas de trabajo con clientes.</p>
+              <p>2. <strong>No repercutir los costes fijos:</strong> Repartir cuotas, alquiler y suscripciones solo en lo que vendes es fundamental para no tener sorpresas a final de año.</p>
+              <p>3. <strong>Fijar el precio solo mirando a la competencia más barata:</strong> Cobrar menos no garantiza más ventas y suele erosionar la viabilidad del negocio.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aviso discreto -->
+    <p class="disclaimer-box">
+      Los resultados son orientativos y dependen de los datos introducidos. Esta herramienta no constituye asesoramiento financiero, fiscal, legal o de inversión.
+    </p>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="../index.html" class="brand">
+            <span>Cuentas Claras<span class="brand-dot"></span></span>
+          </a>
+          <p class="footer-desc">
+            Pon tus números en orden y toma mejores decisiones. Herramientas limpias, directas y sin rodeos.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Herramientas</h4>
+          <ul class="footer-links">
+            <li><a href="calculadora-precios.html">Mi precio ideal</a></li>
+            <li><a href="punto-equilibrio.html">Punto de equilibrio</a></li>
+            <li><a href="coste-adquisicion-valor-cliente.html">Coste y valor del cliente</a></li>
+            <li><a href="salud-negocio.html">Salud del negocio</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Privacidad y uso</h4>
+          <ul class="footer-links">
+            <li><span style="color: var(--text-muted); font-size: 0.88rem;">100% en tu navegador</span></li>
+            <li><span style="color: var(--text-muted); font-size: 0.88rem;">Sin cuentas ni cookies</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; Cuentas Claras.</span>
+        <span>Herramientas prácticas para pequeños negocios.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/compartir.js"></script>
+  <script src="../js/calculadora-precios.js"></script>
+</body>
+</html>
